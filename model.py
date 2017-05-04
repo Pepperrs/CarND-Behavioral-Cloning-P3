@@ -5,7 +5,11 @@ import numpy as np
 
 # import the driving log as csv
 lines = []
-with open('Data/driving_log.csv') as csvfile:
+floyd = 0
+data_path = 'Data/'
+if (floyd):
+    data_path = '/input/'
+with open(data_path + 'driving_log.csv') as csvfile:
     reader = csv.reader(csvfile)
     next(reader, None)      # skip the first line
     for line in reader: 
@@ -19,7 +23,7 @@ measurements = []
 for line in lines:
     source_path = line[0]
     filename = source_path.split('/')[-1]
-    current_path = 'Data/IMG/' + filename
+    current_path = data_path + 'IMG/' + filename
     image = cv2.imread(current_path)
     images.append(image)
     measurement = float(line[3])
