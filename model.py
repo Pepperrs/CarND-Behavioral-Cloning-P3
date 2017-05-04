@@ -6,7 +6,7 @@ import numpy as np
 # import the driving log as csv
 lines = []
 floyd = 0
-data_path = 'Data/'
+data_path = '../CarND-P3-Data/'
 if (floyd):
     data_path = '/input/'
 with open(data_path + 'driving_log.csv') as csvfile:
