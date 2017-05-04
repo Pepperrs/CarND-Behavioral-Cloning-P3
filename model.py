@@ -9,7 +9,7 @@ floyd = 0
 data_path = '../CarND-P3-Data/'
 
 # enable floyd mode for different datapath
-if (sys.argv[0] == "floyd"):
+if (sys.argv[1] == "floyd"):
     # floyd = 1
     data_path = '/input/'
     print("floydmode activated!")
