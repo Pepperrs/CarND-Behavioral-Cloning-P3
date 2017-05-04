@@ -1,14 +1,19 @@
 import csv
 import cv2
 import numpy as np
-
+import sys # required for floyd argument
 
 # import the driving log as csv
 lines = []
 floyd = 0
 data_path = '../CarND-P3-Data/'
-if (floyd):
+
+# enable floyd mode for different datapath
+if (sys.argv[0] = "floyd"):
+    # floyd = 1
     data_path = '/input/'
+
+
 with open(data_path + 'driving_log.csv') as csvfile:
     reader = csv.reader(csvfile)
     next(reader, None)      # skip the first line
