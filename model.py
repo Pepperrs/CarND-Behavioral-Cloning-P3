@@ -9,7 +9,7 @@ floyd = 0
 data_path = '../CarND-P3-Data/'
 
 # enable floyd mode for different datapath
-if (sys.argv[1] == "floyd"):
+if "floyd" in sys.argv:
     # floyd = 1
     data_path = '/input/'
     print("floydmode activated!")
@@ -42,3 +42,7 @@ X_train = np.array(images)
 Y_train = np.array(measurements)
 
 # todo: split data
+
+
+from keras.models import Seqential
+from keras.layers import Flatten, Dense
