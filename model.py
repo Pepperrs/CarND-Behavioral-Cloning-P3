@@ -45,10 +45,31 @@ Y_train = np.array(measurements)
 
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense
+from keras.layers import Flatten, Dense, Conv2D
 
 model = Sequential()
+# input shape for normalized images
 model.add(Flatten(input_shape=(160,320,3)))
+
+# Convolution 24@31x98
+
+# Convolution 36@14x47
+
+# Convolutioin 48@5x22
+
+# Convolution 64@3x20
+
+# Convolution 64@1x18
+
+# Fully connected 1164 neurons
+
+# Fully connected 100 neurons
+
+# Fully connected 50 neurons
+
+# Fully connected 10 neurons (?)
+
+# output vehicle control
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
