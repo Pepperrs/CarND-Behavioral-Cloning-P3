@@ -50,46 +50,49 @@ Y_train = np.array(measurements)
 from keras.models import Sequential
 from keras.layers import Flatten, Dense, Conv2D
 
+
+
 model = Sequential()
+
 # input shape for normalized images
 model.add(Flatten(input_shape=(160,320,3)))
 
 # Convolution 24@31x98
-model.add(Conv2D(24, 5))
+#model.add(Conv2D(24, 5, 5, input_shape=(160,320,3)))
 
 # Convolution 36@14x47
-model.add(Conv2D(32, 5))
+#model.add(Conv2D(32, 5, 5))
 
 
 # Convolutioin 48@5x22
-model.add(Conv2D(48, 3))
+#model.add(Conv2D(48, 3, 3))
 
 
 # Convolution 64@3x20
-model.add(Conv2D(60, 3))
+#model.add(Conv2D(60, 3, 3))
 
 
 # Convolution 64@1x18
-model.add(Conv2D(60, 3))
+#model.add(Conv2D(60, 3, 3))
 
 
 # Flatten
-model.add(Flatten())
+#model.add(Flatten())
 
 # Fully connected 1164 neurons
-model.add(Dense(1164))
+#model.add(Dense(1164))
 
 
 # Fully connected 100 neurons
-model.add(Dense(100))
+#model.add(Dense(100))
 
 
 # Fully connected 50 neurons
-model.add(Dense(50))
+#model.add(Dense(50))
 
 
 # Fully connected 10 neurons (?)
-model.add(Dense(10))
+#model.add(Dense(10))
 
 
 # output vehicle control
