@@ -42,13 +42,20 @@ X_train = np.array(images)
 Y_train = np.array(measurements)
 
 
-# todo: preprocessing
+# Preprocessing
+
+
+
+
+
+
+
 
 # todo: split data
 
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Conv2D
+from keras.layers import Flatten, Dense, Conv2D, Lambda
 
 
 
@@ -57,11 +64,14 @@ model = Sequential()
 # input shape for normalized images
 model.add(Flatten(input_shape=(160,320,3)))
 
+# normalization
+model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
+
 # Convolution 24@31x98
 #model.add(Conv2D(24, 5, 5, input_shape=(160,320,3)))
 
 # Convolution 36@14x47
-#model.add(Conv2D(32, 5, 5))
+model.add(Conv2D(32, 5, 5))
 
 
 # Convolutioin 48@5x22
