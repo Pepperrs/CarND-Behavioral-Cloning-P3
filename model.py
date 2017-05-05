@@ -74,10 +74,8 @@ for line in lines:
 print("Loaded Data!")
 # convert the image and measurements array
 # to serve as training data
-print(images.shape())
 print(images[0].shape())
-print(measurements.shape())
-print(measurements[0]shape())
+print(measurements[0].shape())
 X_train = np.array(images)
 Y_train = np.array(measurements)
 
@@ -86,35 +84,36 @@ Y_train = np.array(measurements)
 
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Conv2D, Lambda
+from keras.layers import Flatten, Dense, Conv2D, Lambda, Cropping2D
 
 
 
 model = Sequential()
 
 # input shape for normalized images
-model.add(Flatten(input_shape=(160,320,3)))
+# model.add(Flatten(input_shape=(160,320,3)))
 
 # normalization
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
+# model.add(Cropping2D(cropping=((70,25)(0,0))))
 
 # Convolution 24@31x98
-#model.add(Conv2D(24, 5, 5, input_shape=(160,320,3)))
+#model.add(Conv2D(24, 5, 5, subsample=(2,2), activation = "relu"))
 
 # Convolution 36@14x47
-#model.add(Conv2D(32, 5, 5))
+#model.add(Conv2D(32, 5, 5, subsample=(2,2), activation = "relu"))
 
 
 # Convolutioin 48@5x22
-#model.add(Conv2D(48, 3, 3))
+#model.add(Conv2D(48, 3, 3, subsample=(2,2), activation = "relu"))
 
 
 # Convolution 64@3x20
-#model.add(Conv2D(60, 3, 3))
+#model.add(Conv2D(60, 3, 3, subsample=(2,2), activation = "relu"))
 
 
 # Convolution 64@1x18
-#model.add(Conv2D(60, 3, 3))
+#model.add(Conv2D(60, 3, 3, subsample=(2,2), activation = "relu"))
 
 
 # Flatten
