@@ -57,23 +57,27 @@ for line in lines:
     measurements.append(-measurement_center)
 
     # append image left
-    images.append(image_left)
-    measurements.append(measurement_left)
+    #images.append(image_left)
+    #measurements.append(measurement_left)
     # also append a flipped version of the image
-    images.append(np.fliplr(image_left))
-    measurements.append(-measurement_left)
+    #images.append(np.fliplr(image_left))
+    #measurements.append(-measurement_left)
 
     # append image right
-    images.append(image_right)
-    measurements.append(measurement_right)
+    #images.append(image_right)
+    #measurements.append(measurement_right)
     # also append a flipped version of the image
-    images.append(np.fliplr(image_right))
-    measurements.append(-measurement_right)
+    #images.append(np.fliplr(image_right))
+    #measurements.append(-measurement_right)
 
 
 print("Loaded Data!")
 # convert the image and measurements array
 # to serve as training data
+print(images.shape())
+print(images[0].shape())
+print(measurements.shape())
+print(measurements[0]shape())
 X_train = np.array(images)
 Y_train = np.array(measurements)
 
