@@ -54,7 +54,6 @@ def generator(samples, batch_size=32):
                 images.append(right_image)
                 angles.append(center_angle-correction)
 
-            # trim image to only see section with road
             X_train = np.array(images)
             y_train = np.array(angles)
             yield sklearn.utils.shuffle(X_train, y_train)
@@ -67,7 +66,7 @@ print("Loaded Data!")
 # todo: split data
 
 
-from keras.models import Sequential
+from keras.models import Sequential, Model
 from keras.layers import Flatten, Dense, Conv2D, Lambda, Cropping2D
 
 train_generator = generator(train_samples, batch_size=32)
@@ -78,62 +77,56 @@ validation_generator = generator(validation_samples, batch_size=32)
 model = Sequential()
 
 # input shape for normalized images
-model.add(Flatten(input_shape=(160,320,3)))
+#model.add(Flatten(input_shape=(160,320,3)))
 
 # normalization
-# model.add(Lambda(lambda x: x/255.0 -0.5))
-
-
-model.add(Lambda(lambda x: (x / 255.0) - 0.5))
+model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
 
 #model.add(Flatten())
-model.add(Cropping2D(cropping=((70,25),(0,0))))
+model.add(Cropping2D(cropping=((50,20),(0,0))))
 
 # Convolution 24@31x98
-#model.add(Conv2D(24, 5, 5, subsample=(2,2), activation = "relu"))
+model.add(Conv2D(24, 5, 5, subsample=(2,2), activation = "relu"))
 
 # Convolution 36@14x47
-#model.add(Conv2D(32, 5, 5, subsample=(2,2), activation = "relu"))
+model.add(Conv2D(32, 5, 5, subsample=(2,2), activation = "relu"))
 
 
 # Convolutioin 48@5x22
-#model.add(Conv2D(48, 3, 3, subsample=(2,2), activation = "relu"))
+model.add(Conv2D(48, 3, 3, subsample=(2,2), activation = "relu"))
 
 
 # Convolution 64@3x20
-#model.add(Conv2D(60, 3, 3, subsample=(2,2), activation = "relu"))
+model.add(Conv2D(60, 3, 3, subsample=(2,2), activation = "relu"))
 
 
 # Convolution 64@1x18
-#model.add(Conv2D(60, 3, 3, subsample=(2,2), activation = "relu"))
+model.add(Conv2D(60, 3, 3, subsample=(2,2), activation = "relu"))
 
 
 # Flatten
-#model.add(Flatten())
+model.add(Flatten())
 
 # Fully connected 1164 neurons
-#model.add(Dense(1164))
+model.add(Dense(1164))
 
 
 # Fully connected 100 neurons
-#model.add(Dense(100))
+model.add(Dense(100))
 
 
 # Fully connected 50 neurons
-#model.add(Dense(50))
+model.add(Dense(50))
 
 
 # Fully connected 10 neurons (?)
-#model.add(Dense(10))
+model.add(Dense(10))
 
 
 # output vehicle control
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
-
-#model.fit(X_train, Y_train, validation_split=0.2, shuffle=True)
-
 
 model.fit_generator(train_generator, samples_per_epoch=len(train_samples*3), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=3)
 
