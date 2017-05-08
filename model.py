@@ -83,6 +83,7 @@ def generator(samples, batch_size=32):
 
             images = []
             angles = []
+            # add all images of the sample to the set
             for batch_sample in batch_samples:
                 center_image = cv2.imread(data_path + 'IMG/'+batch_sample[0].split('/')[-1])
                 left_image = cv2.imread(data_path + 'IMG/'+batch_sample[1].split('/')[-1])
@@ -129,10 +130,11 @@ model = Sequential()
 model.add(Flatten(input_shape=(160,320,3)))
 
 # normalization
-model.add(Lambda(lambda x: x/255.0 -0.5))
+# model.add(Lambda(lambda x: x/255.0 -0.5))
 
 
-#model.add(Lambda(lambda x: (x / 255.0) - 0.5))
+model.add(Lambda(lambda x: (x / 255.0) - 0.5))
+
 #model.add(Flatten())
 #model.add(Cropping2D(cropping=((70,25),(0,0))))
 
