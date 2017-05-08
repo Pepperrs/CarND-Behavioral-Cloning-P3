@@ -143,4 +143,4 @@ model.compile(loss='mse', optimizer='adam')
 model.fit_generator(train_generator, samples_per_epoch=len(train_samples*6), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=3)
 
 
-if (!)model.save(save_path)
+model.save(save_path)
