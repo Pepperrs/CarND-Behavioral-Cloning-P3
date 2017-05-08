@@ -12,11 +12,13 @@ print("Started Behavioural Cloning Model!")
 lines = []
 floyd = 0
 data_path = '../CarND-P3-Data/'
+save_path = 'model.h5'
 
 # enable floyd mode for different datapath
 if "floyd" in sys.argv:
     # floyd = 1
     data_path = '/input/'
+    save_path = '/output/model.h5'
     print("floydmode activated!")
 
 # import the driving log as csv
@@ -141,4 +143,4 @@ model.compile(loss='mse', optimizer='adam')
 model.fit_generator(train_generator, samples_per_epoch=len(train_samples*6), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=3)
 
 
-model.save('model.h5')
+if (!)model.save(save_path)
