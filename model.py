@@ -54,6 +54,16 @@ def generator(samples, batch_size=32):
                 images.append(right_image)
                 angles.append(center_angle-correction)
 
+
+                images.append(np.fliplr(center_image))
+                angles.append(-center_angle)
+                images.append(np.fliplr(left_image))
+                angles.append(-(center_angle+correction))
+                images.append(np.fliplr(right_image))
+                angles.append(-(center_angle-correction))
+
+
+
             X_train = np.array(images)
             y_train = np.array(angles)
             yield sklearn.utils.shuffle(X_train, y_train)
