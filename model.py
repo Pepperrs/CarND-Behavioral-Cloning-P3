@@ -31,7 +31,7 @@ train_samples, validation_samples = train_test_split(lines, test_size=0.2)
 
 
 # Generator for memory efficient data loading
-correction = 255.0*0.2
+correction = 0.2
 def generator(samples, batch_size=32):
     num_samples = len(samples)
     while 1: # Loop forever so the generator never terminates
