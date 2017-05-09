@@ -12,8 +12,8 @@ The goals/steps of this project are the following:
 
 [image1]: ./examples/center_driving.jpg "Center Driving"
 [image2]: ./examples/recovery_1.jpg "Recovery"
-[image3]: ./examples/recovery_1.jpg "Recovery"
-[image4]: ./examples/recovery_1.jpg "Recovery"
+[image3]: ./examples/recovery_2.jpg "Recovery"
+[image4]: ./examples/recovery_3.jpg "Recovery"
 [image5]: ./examples/mirror_2.jpg "Mirror"
 [image6]: ./examples/mirror_1.jpg "Mirror "
 [image7]: ./examples/placeholder_small.png "Flipped Image"
