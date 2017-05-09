@@ -56,7 +56,7 @@ def generator(samples, batch_size=32):
                 images.append(right_image)
                 angles.append(center_angle-correction)
 
-
+                # also add flipped images to the set
                 images.append(np.fliplr(center_image))
                 angles.append(-center_angle)
                 images.append(np.fliplr(left_image))
@@ -75,26 +75,20 @@ def generator(samples, batch_size=32):
 
 print("Loaded Data!")
 
-# todo: split data
-
-
 from keras.models import Sequential, Model
 from keras.layers import Flatten, Dense, Conv2D, Lambda, Cropping2D
 
 train_generator = generator(train_samples, batch_size=32)
 validation_generator = generator(validation_samples, batch_size=32)
 
-
+# Nvidia Architecture
 
 model = Sequential()
 
 # input shape for normalized images
-#model.add(Flatten(input_shape=(160,320,3)))
-
 # normalization
 model.add(Lambda(lambda x: (x / 255.0) - 0.5, input_shape=(160,320,3)))
 
-#model.add(Flatten())
 model.add(Cropping2D(cropping=((50,20),(0,0))))
 
 # Convolution 24@31x98
