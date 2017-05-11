@@ -76,7 +76,7 @@ def generator(samples, batch_size=32):
 print("Loaded Data!")
 
 from keras.models import Sequential, Model
-from keras.layers import Flatten, Dense, Conv2D, Lambda, Cropping2D
+from keras.layers import Flatten, Dense, Conv2D, Lambda, Cropping2D, Dropout
 
 train_generator = generator(train_samples, batch_size=32)
 validation_generator = generator(validation_samples, batch_size=32)
@@ -116,9 +116,14 @@ model.add(Flatten())
 # Fully connected 1164 neurons
 model.add(Dense(1164))
 
+# Dropout layer
+model.add(Dropout(0.2))
 
 # Fully connected 100 neurons
 model.add(Dense(100))
+
+# Dropout layer
+model.add(Dropout(0.2))
 
 
 # Fully connected 50 neurons
