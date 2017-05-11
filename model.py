@@ -143,3 +143,8 @@ model.fit_generator(train_generator, samples_per_epoch=len(train_samples*6), val
 
 
 model.save(save_path)
+
+
+from keras.utils import plot_model
+plot_model(model, to_file= save_path + 'model.png')
+plot_model(model, to_file=save_path + 'model_shapes.png', show_shapes = true)
