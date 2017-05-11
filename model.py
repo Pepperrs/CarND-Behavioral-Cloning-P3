@@ -117,14 +117,10 @@ model.add(Flatten())
 model.add(Dense(1164))
 
 # Dropout layer
-model.add(Dropout(0.2))
+model.add(Dropout(0.1))
 
 # Fully connected 100 neurons
 model.add(Dense(100))
-
-# Dropout layer
-model.add(Dropout(0.2))
-
 
 # Fully connected 50 neurons
 model.add(Dense(50))
@@ -139,12 +135,10 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 
-model.fit_generator(train_generator, samples_per_epoch=len(train_samples*6), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=10)
+model.fit_generator(train_generator, samples_per_epoch=len(train_samples*6), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=3)
 
 
 model.save(save_path)
 
-
-from keras.utils import plot_model
-plot_model(model, to_file= save_path + 'model.png')
-plot_model(model, to_file=save_path + 'model_shapes.png', show_shapes = true)
+from keras.utils.visualize_util import plot
+plot(model, to_file='model.png')
